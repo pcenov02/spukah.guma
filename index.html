@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2e759a">
+  <meta name="description" content="Мобилен сервиз за гуми 24/7 в София и околността. Смяна и ремонт на гуми на място, вулканизатор и пътна помощ по всяко време.">
+  <title>Мобилен сервиз за гуми 24/7</title>
+
+  <style>
+    :root {
+      --blue: #2e759a;
+      --blue-dark: #175b80;
+      --text: #333;
+      --card-radius: 25px;
+      --content-width: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: var(--text);
+    }
+
+    /* The photo fades in and stays 50% opaque; the page content stays fully opaque. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: url('пътнапомощ2.jpg') center center / cover no-repeat;
+      opacity: 0;
+      animation: fadeInBackground 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeInBackground {
+      from { opacity: 0; }
+      to { opacity: 0.5; }
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      background: var(--blue);
+      border-radius: 0 0 8px 8px;
+      padding: 10px 24px;
+    }
+
+    .header-content {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-logo {
+      display: block;
+      width: auto;
+      max-width: min(200px, 50vw);
+      max-height: 86px;
+      object-fit: contain;
+    }
+
+    /* Single click-to-call button in the header, hero and About section. */
+    .call-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-call-buttons { justify-content: flex-end; }
+    .hero .call-buttons { justify-content: center; margin-top: 22px; }
+    .about-container .call-buttons { justify-content: center; }
+
+    .header-call-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      white-space: nowrap;
+      background: #fff;
+      color: var(--blue-dark);
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      width: 100px;
+      height: 42px;
+      padding: 0;
+      font-size: 20px;
+      flex: 0 0 100px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .header-call-button:hover,
+    .header-call-button:focus-visible {
+      background: #e7f2f8;
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 0 20px 40px;
+    }
+
+    /* Use spacing here instead of empty <section> elements. */
+    .hero {
+      max-width: 820px;
+      margin: 68px auto 76px;
+      padding: 34px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .hero h1 { margin: 0 0 16px; font-size: clamp(1.55rem, 4vw, 2.2rem); }
+    .hero p { margin: 0; line-height: 1.6; }
+
+    .cta-button, .cta-call-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      background: var(--blue);
+      padding: 14px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .cta-button:hover, .cta-call-button:hover,
+    .cta-button:focus-visible, .cta-call-button:focus-visible {
+      background: var(--blue-dark);
+    }
+
+    .split-container, .about-container {
+      max-width: var(--content-width);
+      margin: 0 auto 40px;
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: var(--card-radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .split-text, .split-image {
+      min-width: 0;
+      padding: 30px;
+    }
+
+    .split-text { text-align: left; }
+    .split-text h2 { margin: 0 0 20px; line-height: 1.35; }
+    .split-text p { margin: 0; line-height: 1.65; }
+
+    .split-image {
+      background: #f3f5f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* Two equally sized, text-only cards between the two image/text sections. */
+    .dual-box-container {
+      max-width: var(--content-width);
+      margin: 0 auto 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .box {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: var(--card-radius);
+      padding: 34px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .box h2 {
+      margin: 0 0 22px;
+      color: var(--blue-dark);
+    }
+
+    .box p { line-height: 1.7; }
+    .opening-hours { width: 100%; border-collapse: collapse; }
+    .opening-hours th, .opening-hours td {
+      padding: 6px 0;
+      font-weight: normal;
+      text-align: left;
+    }
+    .opening-hours td { text-align: right; white-space: nowrap; }
+
+    .services-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      line-height: 1.85;
+    }
+
+    .services-list li { margin-bottom: 7px; }
+
+    /* Fixed aspect ratio keeps the layout steady as slideshow images change. */
+    .slideshow-container {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8edf1;
+    }
+
+    .slideshow-image {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slideshow-image.active { opacity: 1; }
+
+    .about-container {
+      padding: 42px 40px;
+    }
+
+    .about-container h2 {
+      margin: 0 0 28px;
+      color: var(--blue-dark);
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-style: italic;
+    }
+
+    .about-container p { margin: 0 0 26px; line-height: 1.8; }
+
+    footer {
+      background: var(--blue);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 10px 16px; }
+      .header-logo { max-width: 130px; max-height: 72px; }
+      /* Keep the single call button in each section responsive. */
+      .call-buttons { flex-direction: column; align-items: stretch; }
+      .header-call-buttons { flex: 0 1 auto; min-width: 0; flex-direction: row; flex-wrap: nowrap; gap: 8px; }
+      .header-call-button { width: 100px; height: 42px; padding: 0; font-size: 20px; }
+      .header-logo { max-width: min(130px, 30vw); height: auto; }
+      .header-content { gap: 10px; }
+      .hero .call-buttons, .about-container .call-buttons { max-width: 360px; margin-left: auto; margin-right: auto; }
+      .cta-button, .cta-call-button { width: 100%; }
+      main { padding: 0 14px 20px; }
+      .hero { margin: 44px auto 48px; padding: 26px 18px; }
+      .split-container { grid-template-columns: 1fr; }
+      .split-text, .split-image { padding: 24px; }
+      .dual-box-container { grid-template-columns: 1fr; gap: 20px; }
+      .box { padding: 28px 24px; }
+      .about-container { padding: 32px 24px; }
+    }
+
+    /* Mobile header: logo left, one phone button on the right, as wide as the previous two combined. */
+    @media (max-width: 600px) {
+      .header-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .header-logo {
+        flex: 0 1 auto;
+        min-width: 0;
+        max-width: min(150px, 40vw);
+        max-height: 64px;
+      }
+      .header-call-buttons {
+        width: auto;
+        margin-left: auto;
+        flex: 0 0 auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 8px;
+      }
+      .header-call-button {
+        flex: 0 0 100px;
+        width: 100px;
+        height: 42px;
+        padding: 0;
+        font-size: 20px;
+        letter-spacing: normal;
+      }
+    }
+
+    @media (max-width: 370px) {
+      header { padding: 10px 8px; }
+      .header-call-buttons { gap: 6px; }
+      .header-call-button { flex-basis: 90px; width: 90px; height: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::before { animation: none; opacity: 0.5; }
+      .slideshow-image { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="СпукахГума365.png" alt="лого" class="header-logo">
+      <div class="call-buttons header-call-buttons" aria-label="Телефон за връзка">
+        <a class="header-call-button" href="tel:+359877359535" aria-label="Обади се на 0877 359 535">☎</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Спуках Гума 365</h1>
+      <p>Спукана гума или нужда от смяна на гуми? Идваме на място в София и околността – денем и нощем.</p>
+      <div class="call-buttons" aria-label="Обадете се на мобилния сервиз">
+        <a class="cta-button" href="tel:+359877359535" aria-label="Обади се на 0877 359 535">☎</a>
+      </div>
+    </section>
+
+    <!-- First text/image container -->
+    <section class="split-container" aria-labelledby="intro-heading">
+      <div class="split-text">
+        <h2 id="intro-heading">Мобилен сервиз за гуми – при вас, когато имате нужда.</h2>
+        <p>Ние предлагаме денонощен мобилен сервиз за гуми в София и околността. При спукана гума, необходимост от смяна или вулканизация идваме на място. Можете да се свържете с нас 24 часа в денонощието, 7 дни в седмицата.</p>
+      </div>
+      <div class="split-image">
+        <img class="feature-image" src="пътнапомощ1.jpg" alt="Мобилен сервиз за гуми 24/7">
+      </div>
+    </section>
+
+    <!-- Two text-only containers, side by side on desktop -->
+    <div class="dual-box-container">
+      <section class="box" aria-labelledby="hours-heading">
+        <h2 id="hours-heading">Работно време</h2>
+        <table class="opening-hours">
+          <tbody>
+            <tr><th scope="row">Понеделник</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Вторник</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Сряда</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Четвъртък</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Петък</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Събота</th><td>00:00 – 24:00</td></tr>
+            <tr><th scope="row">Неделя</th><td>00:00 – 24:00</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="box" aria-labelledby="area-heading">
+        <h2 id="area-heading">Район на обслужване</h2>
+        <p>Предлагаме мобилен сервиз за гуми 24/7 в София и околността.</p>
+        <p>Обадете се на телефона ни и ни кажете къде се намирате и какъв е проблемът с автомобила.</p>
+      </section>
+    </div>
+
+    <!-- Second text/image container: services on the left, slideshow on the right -->
+    <section class="split-container" aria-labelledby="services-heading">
+      <div class="split-text">
+        <h2 id="services-heading">Нашите услуги</h2>
+        <ul class="services-list">
+          <li>🕒 Денонощен сервиз за гуми</li>
+          <li>📞 Обслужване на клиенти 24/7</li>
+          <li>🚗 Покупко-продажба на гуми</li>
+          <li>🔧 Помощ при спукана гума</li>
+          <li>🛠️ Вулканизатор</li>
+          <li>🔋 Подаване на ток</li>
+          <li>⛽ Носене на гориво</li>
+          <li>🚨 Пътна помощ</li>
+        </ul>
+      </div>
+      <div class="split-image">
+        <div class="slideshow-container" aria-label="Снимки на мобилния сервиз за гуми">
+          <img class="slideshow-image active" src="пътнапомощ2.jpg" alt="Мобилен сервиз за гуми — снимка 1">
+          <img class="slideshow-image" src="пътнапомощ3.jpg" alt="Мобилен сервиз за гуми — снимка 2">
+        </div>
+      </div>
+    </section>
+
+    <!-- Final full-width container with click-to-call button -->
+    <section class="about-container" aria-labelledby="about-heading">
+      <h2 id="about-heading">За нас</h2>
+      <p>Спуках Гума 365 е мобилен сервиз за гуми с над 7 години опит в обслужването на автомобили на място. Знаем, че проблем с гумите може да възникне по всяко време – затова сме на разположение 24/7 в София и околността. Помагаме при спукана гума, извършваме смяна и вулканизация на гуми и предлагаме покупко-продажба на гуми. При нужда можете да разчитате на нас и за подаване на ток, доставка на гориво и пътна помощ. Обадете се, кажете ни къде сте и какво се е случило и ще обсъдим как можем да ви съдействаме.</p>
+      <div class="call-buttons" aria-label="Свържете се с нас по телефона">
+        <a class="cta-call-button" href="tel:+359877359535" aria-label="Обади се на 0877 359 535">☎</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year">2026</span> Спуках Гума 365. Всички права запазени.</footer>
+
+  <script>
+    /* Keep slideshow photos in the same folder as this HTML file. */
+    const images = [
+      'пътнапомощ2.jpg',
+      'пътнапомощ3.jpg',
+      'пътнапомощ4.jpg',
+      'пътнапомощ5.jpg',
+      'пътнапомощ6.jpg',
+      'пътнапомощ7.jpg',
+      'пътнапомощ8.jpg',
+      'пътнапомощ9.jpg',
+      'пътнапомощ10.jpg',
+      'пътнапомощ11.jpg',
+      'пътнапомощ12.jpg',
+      'пътнапомощ13.jpg',
+      'пътнапомощ14.jpg',
+      'пътнапомощ15.jpg'
+    ];
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const slides = document.querySelectorAll('.slideshow-image');
+    let currentImage = 0;
+    let activeSlot = 0;
+
+    // Load the photos ahead of time to help avoid flickering on image changes.
+    images.forEach(src => { const preload = new Image(); preload.src = src; });
+
+    async function showNextSlide() {
+      const nextImage = (currentImage + 1) % images.length;
+      const nextSlot = 1 - activeSlot;
+      const incoming = slides[nextSlot];
+      const outgoing = slides[activeSlot];
+      incoming.src = images[nextImage];
+      incoming.alt = `Мобилен сервиз за гуми — снимка ${nextImage + 1}`;
+
+      try {
+        await incoming.decode();
+      } catch {
+        // If a file is missing or unreadable, keep showing the current photo.
+        return;
+      }
+
+      incoming.style.zIndex = '2';
+      outgoing.style.zIndex = '1';
+      // Wait for the browser to paint the hidden image before starting the crossfade.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        incoming.classList.add('active');
+        outgoing.classList.remove('active');
+      }));
+      currentImage = nextImage;
+      activeSlot = nextSlot;
+    }
+
+    if (slides.length === 2 && images.length > 1) {
+      setInterval(showNextSlide, 3000);
+    }
+  </script>
+</body>
+</html>
